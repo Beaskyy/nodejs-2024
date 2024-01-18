@@ -1,28 +1,15 @@
-const path = require("node:path");
+const DrinkMachine = require("./drink-machine");
+const PizzaShop = require("./pizza-shop");
 
-console.log(__filename);
-console.log(__dirname);
+const pizzaShop = new PizzaShop();
+const drinkMachine = new DrinkMachine();
 
-console.log(path.basename(__filename));
-console.log(path.basename(__dirname));
+pizzaShop.on("order", (size, topping) => {
+  console.log(
+    `Order received! Baking a ${size} pizza with ${topping} toppings`
+  );
+  drinkMachine.serveDrink(size);
+});
 
-console.log(path.extname(__filename));
-console.log(path.extname(__dirname));
-
-console.log(path.parse(__filename));
-console.log(path.format(path.parse(__filename)));
-
-console.log(path.isAbsolute(__filename));
-console.log(path.isAbsolute("./add.js"));
-
-console.log(path.join("folder1", "folder2", "index.htnl"))
-console.log(path.join("/folder1", "folder2", "index.htnl"))
-console.log(path.join("/folder1", "//folder2", "index.htnl"))
-console.log(path.join("/folder1", "//folder2", "../index.htnl"))
-console.log(path.join(__dirname, "data.json"))
-
-console.log(path.resolve("folder1", "folder2", "index.htnl"))
-console.log(path.resolve("/folder1", "folder2", "index.htnl"))
-console.log(path.resolve("/folder1", "//folder2", "index.htnl"))
-console.log(path.resolve("/folder1", "//folder2", "../index.htnl"))
-console.log(path.resolve(__dirname, "data.json"))
+pizzaShop.order("large", "mushrooms");
+pizzaShop.displayOrderNumber();
