@@ -1,18 +1,8 @@
-const http = require("node:http");
-const fs = require("node:fs");
+const crypto = require("node:crypto")
 
-const server = http.createServer((req, res) => {
-  if (req.url === "/") {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end("Home page");
-  } else if (req.url === "/about") {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end("About page");
-  } else if (req.url === "/api") {
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ firstName: "Bruce", lastName: "Wayne" }));
-  }
-});
-server.listen(3000, () => {
-  console.log("server listening on port 3000...");
-});
+const start = Date.now();
+crypto.pbkdf2Sync("password", "salt", 100000, 512, "sha512")
+crypto.pbkdf2Sync("password", "salt", 100000, 512, "sha512")
+crypto.pbkdf2Sync("password", "salt", 100000, 512, "sha512")
+
+console.log("Hash: ", Date.now() - start)
